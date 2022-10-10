@@ -18,7 +18,8 @@ class KamApp(KeyApp):
 
     # First row
     key_0 = Key("Split", COLOR_FUNC, Press(Keycode.COMMAND, Keycode.BACKSLASH))
-    key_1 = Key("Windows", COLOR_FUNC, Press(Keycode.CONTROL, Keycode.W))
+    key_1 = Key("Windows", COLOR_FUNC, Press(Keycode.CONTROL,
+                Keycode.W), double_tap_command=Press(Keycode.ESCAPE))
     key_2 = Key("Log", COLOR_FUNC, Text("console.log('log', "),
                 double_tap_command=Text('JSON.stringify(x, null, 2)'))
 
@@ -31,11 +32,11 @@ class KamApp(KeyApp):
                     "reveal in explorer"), Press(Keycode.ENTER)),
                 double_tap_command=Sequence(Press(Keycode.F1), Text("reveal in finder"), Press(Keycode.ENTER)))
     key_5 = Key("Jump", COLOR_FUNC, Press(
-        Keycode.COMMAND, Keycode.SHIFT, Keycode.O))
+        Keycode.COMMAND, Keycode.SHIFT, Keycode.O), double_tap_command=Press(Keycode.ESCAPE))
 
     # Third row
     key_6 = Key("Wrap", COLOR_FUNC, Sequence(
-        Press(Keycode.F1), Text("wrap with"), Press(Keycode.ENTER)))
+        Press(Keycode.F1), Text("wrap with"), Press(Keycode.ENTER)), double_tap_command=Press(Keycode.ESCAPE))
     key_7 = Key("Refactor", COLOR_FUNC, Press(
         Keycode.CONTROL, Keycode.SHIFT, Keycode.R))
     key_8 = Key("Fmt", COLOR_FUNC, Press(
@@ -48,7 +49,8 @@ class KamApp(KeyApp):
     key_11 = Key(">>", COLOR_FUNC, Media(ConsumerControlCode.SCAN_NEXT_TRACK))
 
     # go to last edited location (note: cmd-k, q seems to not be happy with macros so using ye olde search)
-    encoder_button = Sequence(Press(Keycode.COMMAND, Keycode.K), Release(Keycode.K), Press(Keycode.Q), Release(Keycode.Q, Keycode.COMMAND))
+    encoder_button = Sequence(Press(Keycode.COMMAND, Keycode.K), Release(
+        Keycode.K), Press(Keycode.Q), Release(Keycode.Q, Keycode.COMMAND))
 
     # next/prev locations
     encoder_increase = Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.MINUS)
