@@ -2,8 +2,6 @@ try:
     from typing import Dict
 except ImportError:
     pass
-
-from apps.home import HomeApp
 from apps.kam import KamApp
 from utils.apps.key import KeyAppSettings
 from utils.constants import (
