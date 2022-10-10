@@ -18,30 +18,39 @@ class KamApp(KeyApp):
     # First row
     key_0 = Key("Split", COLOR_FUNC, Press(Keycode.COMMAND, Keycode.BACKSLASH))
     key_1 = Key("Windows", COLOR_FUNC, Press(Keycode.CONTROL, Keycode.W))
-    key_2 = Key("Log", COLOR_FUNC, Text("console.log('log', "), double_tap_command=Text('JSON.stringify(x, null, 2)'))
+    key_2 = Key("Log", COLOR_FUNC, Text("console.log('log', "),
+                double_tap_command=Text('JSON.stringify(x, null, 2)'))
 
     # Second row
-    key_3 = Key("Focus", COLOR_FUNC, 
-        Press(Keycode.COMMAND, Keycode.OPTION, Keycode.T), 
-        double_tap_command=Sequence(Press(Keycode.COMMAND, Keycode.K), Press(Keycode.W)))
-    key_4 = Key("Reveal", COLOR_FUNC, 
-        Sequence(Press(Keycode.F1), Text("reveal in explorer"), Press(Keycode.ENTER)), 
-        double_tap_command=Sequence(Press(Keycode.F1), Text("reveal in finder"), Press(Keycode.ENTER)))
-    key_5 = Key("Jump", COLOR_FUNC, Press(Keycode.COMMAND, Keycode.SHIFT, Keycode.O))
+    key_3 = Key("Focus", COLOR_FUNC,
+                Press(Keycode.COMMAND, Keycode.OPTION, Keycode.T),
+                # NOTE: not using cmd-k, w here because that doesn't seem to be happy with the macros, it treats it as cmd-k, cmd-w and closes all
+                double_tap_command=Sequence(Press(Keycode.F1), Text("close all editors group"), Press(Keycode.ENTER)))
+    key_4 = Key("Reveal", COLOR_FUNC,
+                Sequence(Press(Keycode.F1), Text(
+                    "reveal in explorer"), Press(Keycode.ENTER)),
+                double_tap_command=Sequence(Press(Keycode.F1), Text("reveal in finder"), Press(Keycode.ENTER)))
+    key_5 = Key("Jump", COLOR_FUNC, Press(
+        Keycode.COMMAND, Keycode.SHIFT, Keycode.O))
 
     # Third row
-    key_6 = Key("Wrap", COLOR_FUNC, Sequence(Press(Keycode.F1), Text("wrap with"), Press(Keycode.ENTER)))
-    key_7 = Key("Refactor", COLOR_FUNC, Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.R))
-    key_8 = Key("Fmt", COLOR_FUNC, Press(Keycode.OPTION, Keycode.SHIFT, Keycode.F))
+    key_6 = Key("Wrap", COLOR_FUNC, Sequence(
+        Press(Keycode.F1), Text("wrap with"), Press(Keycode.ENTER)))
+    key_7 = Key("Refactor", COLOR_FUNC, Press(
+        Keycode.CONTROL, Keycode.SHIFT, Keycode.R))
+    key_8 = Key("Fmt", COLOR_FUNC, Press(
+        Keycode.OPTION, Keycode.SHIFT, Keycode.F))
 
     # Fourth row
-    key_9 = Key("<<", COLOR_FUNC, Media(ConsumerControlCode.SCAN_PREVIOUS_TRACK))
+    key_9 = Key("<<", COLOR_FUNC, Media(
+        ConsumerControlCode.SCAN_PREVIOUS_TRACK))
     key_10 = Key("> ||", COLOR_FUNC, Media(ConsumerControlCode.PLAY_PAUSE))
     key_11 = Key(">>", COLOR_FUNC, Media(ConsumerControlCode.SCAN_NEXT_TRACK))
 
-    # go to last edited location
-    encoder_button = Sequence(Press(Keycode.COMMAND, Keycode.K), Press(Keycode.COMMAND, Keycode.Q))
+    # go to last edited location (note: cmd-k, q seems to not be happy with macros so using ye olde search)
+    encoder_button = Sequence(Press(Keycode.F1), Text(
+        'go last edit'), Press(Keycode.ENTER))
 
     # next/prev locations
-    encoder_increase = Press(Keycode.CONTROL, Keycode.MINUS)
-    encoder_decrease = Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.MINUS)
+    encoder_increase = Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.MINUS)
+    encoder_decrease = Press(Keycode.CONTROL, Keycode.MINUS)
