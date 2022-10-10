@@ -6,6 +6,7 @@ from utils.commands import (
     Keycode,
     Media,
     Press,
+    Release,
     Sequence,
     Text
 )
@@ -24,8 +25,7 @@ class KamApp(KeyApp):
     # Second row
     key_3 = Key("Focus", COLOR_FUNC,
                 Press(Keycode.COMMAND, Keycode.OPTION, Keycode.T),
-                # NOTE: not using cmd-k, w here because that doesn't seem to be happy with the macros, it treats it as cmd-k, cmd-w and closes all
-                double_tap_command=Sequence(Press(Keycode.F1), Text("close all editors group"), Press(Keycode.ENTER)))
+                double_tap_command=Sequence(Press(Keycode.COMMAND, Keycode.K), Release(Keycode.K), Press(Keycode.W), Release(Keycode.W, Keycode.COMMAND)))
     key_4 = Key("Reveal", COLOR_FUNC,
                 Sequence(Press(Keycode.F1), Text(
                     "reveal in explorer"), Press(Keycode.ENTER)),
@@ -48,8 +48,7 @@ class KamApp(KeyApp):
     key_11 = Key(">>", COLOR_FUNC, Media(ConsumerControlCode.SCAN_NEXT_TRACK))
 
     # go to last edited location (note: cmd-k, q seems to not be happy with macros so using ye olde search)
-    encoder_button = Sequence(Press(Keycode.F1), Text(
-        'go last edit'), Press(Keycode.ENTER))
+    encoder_button = Sequence(Press(Keycode.COMMAND, Keycode.K), Release(Keycode.K), Press(Keycode.Q), Release(Keycode.Q, Keycode.COMMAND))
 
     # next/prev locations
     encoder_increase = Press(Keycode.CONTROL, Keycode.SHIFT, Keycode.MINUS)
