@@ -26,7 +26,7 @@ class KamApp(KeyApp):
     # Second row
     key_3 = Key("Focus", COLOR_FUNC,
                 Press(Keycode.COMMAND, Keycode.OPTION, Keycode.T),
-                double_tap_command=Sequence(Press(Keycode.COMMAND, Keycode.K), Release(Keycode.K), Press(Keycode.W), Release(Keycode.W, Keycode.COMMAND)))
+                double_tap_command=Sequence(Press(Keycode.COMMAND, Keycode.K), Release(Keycode.K, Keycode.COMMAND), Press(Keycode.W)))
     key_4 = Key("Reveal", COLOR_FUNC,
                 Sequence(Press(Keycode.F1), Text(
                     "reveal in explorer"), Press(Keycode.ENTER)),
@@ -48,7 +48,7 @@ class KamApp(KeyApp):
     key_10 = Key("> ||", COLOR_FUNC, Media(ConsumerControlCode.PLAY_PAUSE))
     key_11 = Key(">>", COLOR_FUNC, Media(ConsumerControlCode.SCAN_NEXT_TRACK))
 
-    # go to last edited location (note: cmd-k, q seems to not be happy with macros so using ye olde search)
+    # go to last edited location
     encoder_button = Sequence(Press(Keycode.COMMAND, Keycode.K), Release(
         Keycode.K), Press(Keycode.Q), Release(Keycode.Q, Keycode.COMMAND))
 
